@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Cart from '../Cart/Cart';
 import { Link, useLoaderData } from 'react-router-dom';
 import ReviewItem from '../ReviewItem/ReviewItem';
-import './Orders.css';
 import { deleteShoppingCart, removeFromDb } from '../../utilities/fakedb';
 
 const Orders = () => {
@@ -21,8 +20,8 @@ const Orders = () => {
     }
 
     return (
-        <div className='shop-container'>
-            <div className='review-container'>
+        <div className='py-44 container mx-auto grid grid-cols-1 lg:grid-cols-12'>
+            <div className='grid grid-cols-1 gap-5 h-36 lg:col-span-8 w-full'>
                 {
                     cart.map(product => <ReviewItem
                         key={product.id}
@@ -31,13 +30,15 @@ const Orders = () => {
                     ></ReviewItem>)
                 }
             </div>
-            <div className='cart-container'>
+            <div className='lg:col-span-4 md:w-full w-[600px] mx-auto px-3 lg:mt-0 mt-44'>
                 <Cart
                     cart={cart}
                     handleClearCart={handleClearCart}
                 >
-                    <Link className='proceed-link' to="/checkout">
-                        <button className='btn-proceed'>Proceed Checkout</button>
+                    <Link className='' to="/checkout">
+                        <div className='flex justify-center mt-5 text-lg'>
+                        <button className=' w-full py-3 px-3 text-white bg-orange-500'>Proceed Checkout</button>
+                        </div>
                     </Link>
                 </Cart>
             </div>
