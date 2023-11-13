@@ -14,7 +14,7 @@ const Shop = () => {
             .then(res => res.json())
             .then(data => setProducts(data))
     }, []);
-
+console.log(products);
     useEffect(() => {
         const storedCart = getShoppingCart();
         const savedCart = [];
@@ -62,25 +62,27 @@ const Shop = () => {
     }
 
     return (
-        <div className='shop-container'>
-            <div className="products-container">
-                {
-                    products.map(product => <Product
-                        key={product.id}
-                        product={product}
-                        handleAddToCart={handleAddToCart}
-                    ></Product>)
-                }
-            </div>
-            <div className="cart-container">
-                <Cart
-                    cart={cart}
-                    handleClearCart={handleClearCart}
-                >
-                    <Link className='proceed-link' to="/orders">
-                        <button className='btn-proceed'>Review Order</button>
-                    </Link>
-                </Cart>
+        <div className=' container mx-auto top-44 relative'>
+            <div className='grid grid-cols-1  lg:grid-cols-12 gap-4'>
+                <div className="order-2 lg:order-1 w-full h-full grid md:grid-cols-2 gap-8 shadow-xl lg:grid-cols-3 grid-cols-1 lg:col-span-9">
+                    {
+                        products.map(product => <Product
+                            key={product.id}
+                            product={product}
+                            handleAddToCart={handleAddToCart}
+                        ></Product>)
+                    }
+                </div>
+                <div className="lg:col-span-3 order-1 lg:order-2">
+                    <Cart
+                        cart={cart}
+                        handleClearCart={handleClearCart}
+                    >
+                        <Link className='proceed-link' to="/orders">
+                            <button className='btn-proceed'>Review Order</button>
+                        </Link>
+                    </Cart>
+                </div>
             </div>
         </div>
     );
